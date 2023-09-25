@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (same as before) ... -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'forecast/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+<header class="bg-dark text-white text-center py-5">
+    <h1>Hurricane Preparedness App</h1>
+    <p>Stay informed and stay safe</p>
+</header>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">HPA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- ... (header and navbar as before) ... -->
+
+<!-- Main content -->
+<head>
+    <title>Weather Data</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            {% for period in forecast_data %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            {{ period.name }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ period.shortForecast }}</h5>
+                            <p class="card-text">{{ period.detailedForecast }}</p>
+                            <p class="card-text"><small class="text-muted">Temperature: {{ period.temperature }}° {{ period.temperatureUnit }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        {{ map|safe }}
+    </div>
+    <!-- ... (other sections and footer as before) ... -->
+
+    <!-- Optional: jQuery library, Popper JS, and Bootstrap JS for some Bootstrap components -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
